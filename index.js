@@ -6,8 +6,13 @@ import ora from 'ora';
 main();
 
 async function main() {
-  const users = await ask('Enter users separated with comma: ');
-  const [username1, username2] = users.split(',').map(u => u.trim());
+  const [error, users] = await input();
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  const [username1, username2] = users;
 
   const wl1 = await getWatchlist(username1);
   const wl2 = await getWatchlist(username2);
@@ -62,4 +67,17 @@ function ask(question) {
     rl.close();
     resolve(answer);
   }));
+}
+
+async function input() {
+  const input = await ask('Enter users separated with comma: ');
+
+  let users = input.split(',');
+  if (users.length !== 2) {
+    return ["Please enter ${username1}, ${username2}", null];
+  }
+
+  users = users.map(u => u.trim());
+
+  return [null, users];
 }
