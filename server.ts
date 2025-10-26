@@ -75,9 +75,11 @@ fastify.setErrorHandler((error, req, res) => {
   res.status(500).send("Internal server error");
 })
 
-fastify.listen({ port: 3000 }).then(() => {
-  console.log("listening on port 3000");
-})
+if (process.env.NODE_ENV !== 'prod') {
+  fastify.listen({ port: 3000 }).then(() => {
+    console.log("listening on port 3000");
+  })
+}
 
 
 async function getWatchlist(username: string) {
@@ -122,4 +124,11 @@ async function checkUserExists(username: string): Promise<string | null> {
   }
 
   return null;
+}
+
+// needed for vercel
+// https://fastify-example.vercel.app/
+export default async function handler(req: any, res: any) {
+  await fastify.ready()
+  fastify.server.emit('request', req, res)
 }
