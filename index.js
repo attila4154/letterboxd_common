@@ -13,6 +13,16 @@ async function main() {
   }
 
   const [username1, username2] = users;
+  const userValidationErr1 = await checkUserExists(username1);
+  if (userValidationErr1) {
+    console.error(userValidationErr1);
+    return;
+  }
+  const userValidationErr2 = await checkUserExists(username2);
+  if (userValidationErr2) {
+    console.error(userValidationErr2);
+    return;
+  }
 
   const wl1 = await getWatchlist(username1);
   const wl2 = await getWatchlist(username2);
@@ -80,4 +90,20 @@ async function input() {
   users = users.map(u => u.trim());
 
   return [null, users];
+}
+
+async function checkUserExists(username) {
+  let res;
+  try {
+    res = await fetch(`https://letterboxd.com/${username}/watchlist`);
+  } catch (err) {
+    console.log(err);
+    return `Failed to check if ${username} exists`;
+  }
+
+  if (res.status === 404) {
+    return `User ${username} doesn't exists`;
+  }
+
+  return null;
 }
