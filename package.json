@@ -3,9 +3,9 @@
   "type": "module",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.ts",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.ts"
   },
   "keywords": [],
   "author": "",
