@@ -20,7 +20,7 @@ Letterbox Common fetches the watchlists from two Letterboxd users and displays a
 Run the tool:
 
 ```bash
-node index.js
+npm run start
 ```
 
 When prompted, enter two Letterboxd usernames separated by a comma:
@@ -43,25 +43,25 @@ The tool will:
 ┌───────────────────────────────────┬─────────────────────────────────────────────────────────┐
 │                             Name  │ Link                                                    │
 ├───────────────────────────────────┼─────────────────────────────────────────────────────────┤
-│             The Wrong Man (1956)  │ https://letterboxd.com/film/the-wrong-man/             │
-│        You Only Live Once (1937)  │ https://letterboxd.com/film/you-only-live-once/        │
-│             Boiling Point (2021)  │ https://letterboxd.com/film/boiling-point-2021/        │
-│                   Monster (2004)  │ https://letterboxd.com/film/monster-2004/              │
-│    Breakfast at Tiffany's (1961)  │ https://letterboxd.com/film/breakfast-at-tiffanys/     │
-│                Twin Peaks (1989)  │ https://letterboxd.com/film/twin-peaks/                │
-│        Ghost in the Shell (1995)  │ https://letterboxd.com/film/ghost-in-the-shell/        │
-│             Roman Holiday (1953)  │ https://letterboxd.com/film/roman-holiday/             │
-│          The Wizard of Oz (1939)  │ https://letterboxd.com/film/the-wizard-of-oz-1939/     │
-│          The Conversation (1974)  │ https://letterboxd.com/film/the-conversation/          │
-│           Cinema Paradiso (1988)  │ https://letterboxd.com/film/cinema-paradiso/           │
-│                Past Lives (2023)  │ https://letterboxd.com/film/past-lives/                │
-│                     Tenet (2020)  │ https://letterboxd.com/film/tenet/                     │
-│                 Chinatown (1974)  │ https://letterboxd.com/film/chinatown/                 │
-│             Beautiful Boy (2018)  │ https://letterboxd.com/film/beautiful-boy-2018/        │
-│                   Boyhood (2014)  │ https://letterboxd.com/film/boyhood/                   │
-│ The Umbrellas of Cherbourg (1964) │ https://letterboxd.com/film/the-umbrellas-of-cherbourg/│
-│      In the Mood for Love (2000)  │ https://letterboxd.com/film/in-the-mood-for-love/      │
-│         The Piano Teacher (2001)  │ https://letterboxd.com/film/the-piano-teacher/         │
-│                        8½ (1963)  │ https://letterboxd.com/film/8-half/                    │
+│             The Wrong Man (1956)  │ https://letterboxd.com/film/the-wrong-man/              │
+│        You Only Live Once (1937)  │ https://letterboxd.com/film/you-only-live-once/         │
+│             Boiling Point (2021)  │ https://letterboxd.com/film/boiling-point-2021/         │
+│                   Monster (2004)  │ https://letterboxd.com/film/monster-2004/               │
+│    Breakfast at Tiffany's (1961)  │ https://letterboxd.com/film/breakfast-at-tiffanys/      │
+│                Twin Peaks (1989)  │ https://letterboxd.com/film/twin-peaks/                 │
+│        Ghost in the Shell (1995)  │ https://letterboxd.com/film/ghost-in-the-shell/         │
+│             Roman Holiday (1953)  │ https://letterboxd.com/film/roman-holiday/              │
+│          The Wizard of Oz (1939)  │ https://letterboxd.com/film/the-wizard-of-oz-1939/      │
+│          The Conversation (1974)  │ https://letterboxd.com/film/the-conversation/           │
+│           Cinema Paradiso (1988)  │ https://letterboxd.com/film/cinema-paradiso/            │
+│                Past Lives (2023)  │ https://letterboxd.com/film/past-lives/                 │
+│                     Tenet (2020)  │ https://letterboxd.com/film/tenet/                      │
+│                 Chinatown (1974)  │ https://letterboxd.com/film/chinatown/                  │
+│             Beautiful Boy (2018)  │ https://letterboxd.com/film/beautiful-boy-2018/         │
+│                   Boyhood (2014)  │ https://letterboxd.com/film/boyhood/                    │
+│ The Umbrellas of Cherbourg (1964) │ https://letterboxd.com/film/the-umbrellas-of-cherbourg/ │
+│      In the Mood for Love (2000)  │ https://letterboxd.com/film/in-the-mood-for-love/       │
+│         The Piano Teacher (2001)  │ https://letterboxd.com/film/the-piano-teacher/          │
+│                        8½ (1963)  │ https://letterboxd.com/film/8-half/                     │
 └───────────────────────────────────┴─────────────────────────────────────────────────────────┘
 ```
