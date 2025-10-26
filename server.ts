@@ -102,8 +102,11 @@ async function getWatchlist(username: string) {
   }
 
   const watchlist = filmElements.map(el => ({
+    // @ts-ignore
     Name: el._attrs['data-item-name'],
+    // @ts-ignore
     id: el._attrs['data-film-id'],
+    // @ts-ignore
     Link: 'https://letterboxd.com' + el._attrs['data-item-link'],
   }))
 
