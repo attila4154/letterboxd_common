@@ -12,12 +12,14 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const fastify = Fastify({ logger: true });
 
 
+//@ts-ignore
 fastify.get('/test', (req, res) => {
   res.send('echo');
 })
 fastify.register(fastifyStatic, {
   root: path.join(__dirname, 'public'),
 })
+//@ts-ignore
 fastify.post('/common', async (req, res) => {
   // Parse and validate request body
   let body: unknown;
@@ -69,6 +71,7 @@ fastify.post('/common', async (req, res) => {
   res.status(200).send(JSON.stringify(common));
 })
 
+//@ts-ignore
 fastify.setErrorHandler((error, req, res) => {
   console.error("Caught error", error);
 
