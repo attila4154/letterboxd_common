@@ -11,18 +11,7 @@ async function main() {
     console.error(error);
     return;
   }
-
   const [username1, username2] = users;
-  const userValidationErr1 = await checkUserExists(username1);
-  if (userValidationErr1) {
-    console.error(userValidationErr1);
-    return;
-  }
-  const userValidationErr2 = await checkUserExists(username2);
-  if (userValidationErr2) {
-    console.error(userValidationErr2);
-    return;
-  }
 
   const wl1 = await getWatchlist(username1);
   const wl2 = await getWatchlist(username2);
@@ -89,6 +78,24 @@ async function input() {
 
   users = users.map(u => u.trim());
 
+  const [username1, username2] = users;
+  const spinner = ora('Checking if users exist').start();
+  const userValidationErr1 = await checkUserExists(username1);
+  if (userValidationErr1) {
+    await sleep(1000);
+    spinner.stop();
+    return [userValidationErr1, null];
+  }
+  const userValidationErr2 = await checkUserExists(username2);
+  if (userValidationErr2) {
+    await sleep(1000);
+    spinner.stop();
+    return [userValidationErr2, null];
+  }
+
+  await sleep(1000);
+  spinner.stop();
+
   return [null, users];
 }
 
@@ -106,4 +113,8 @@ async function checkUserExists(username) {
   }
 
   return null;
+}
+
+async function sleep(time) {
+  await new Promise((res) => setTimeout(res, time));
 }
