@@ -10,21 +10,45 @@ function main() {
   const usersForm = document.getElementsByClassName('lb-users-form')[0];
   const username1Field = document.getElementById('user1-input')
   const username2Field = document.getElementById('user2-input');
+  const errorMessageDiv = document.getElementById('error-message');
 
   usersForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     console.log('from submit form', { u1: username1Field.value, u2: username2Field.value });
 
-    const res = await fetch('/common',
-      {
-        method: "POST",
-        body: JSON.stringify([username1Field.value, username2Field.value])
-      }
-    );
-    const json = await res.json();
+    // Clear previous error messages
+    errorMessageDiv.textContent = '';
+    errorMessageDiv.style.display = 'none';
 
-    console.log(json);
-    renderTable(json);
+    showSpinner();
+
+    try {
+      const res = await fetch('/common',
+        {
+          method: "POST",
+          body: JSON.stringify([username1Field.value, username2Field.value])
+        }
+      );
+      const json = await res.json();
+
+      if (!res.ok) {
+        // Display error message
+        const errorMsg = json.error || 'An error occurred';
+        errorMessageDiv.textContent = errorMsg;
+        errorMessageDiv.style.display = 'block';
+        hideSpinner();
+        return;
+      }
+
+      console.log(json);
+      hideSpinner();
+      renderTable(json);
+    } catch (error) {
+      console.error(error);
+      errorMessageDiv.textContent = 'Failed to fetch data. Please try again.';
+      errorMessageDiv.style.display = 'block';
+      hideSpinner();
+    }
   });
 }
 
@@ -76,3 +100,22 @@ function renderTable(json) {
   tableSection.appendChild(table);
 }
 
+function showSpinner() {
+  const button = document.getElementById('submit-btn');
+  const spinner = document.getElementById('button-spinner');
+  const text = document.querySelector('.button-text');
+
+  button.disabled = true;
+  spinner.classList.add('show');
+  text.style.display = 'none';
+}
+
+function hideSpinner() {
+  const button = document.getElementById('submit-btn');
+  const spinner = document.getElementById('button-spinner');
+  const text = document.querySelector('.button-text');
+
+  button.disabled = false;
+  spinner.classList.remove('show');
+  text.style.display = 'inline-block';
+}
