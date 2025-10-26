@@ -1,12 +1,12 @@
 import readline from 'readline';
 import HTMLParser from 'node-html-parser';
+import ora from 'ora';
 
 main();
 
 async function main() {
   const users = await ask('Enter users: ');
   const [username1, username2] = users.split(',').map(u => u.trim());
-  console.log({ username1, username2 });
 
   const wl1 = await getWatchlist(username1);
   const wl2 = await getWatchlist(username2);
@@ -17,18 +17,19 @@ async function main() {
 }
 
 async function getWatchlist(username) {
+  const spinner = ora(`Fetching ${username}'s watchlist`).start();
   const filmElements = [];
 
   let cnt = 1;
   while (true) {
     const res = await fetch(`https://letterboxd.com/${username}/watchlist/page/${cnt}/`);
     const html = await res.text();
+    cnt++;
 
     const root = HTMLParser.parse(html);
     const _filmElements = root.querySelectorAll('[data-film-id]');
     filmElements.push(..._filmElements);
 
-    console.log(_filmElements.length);
     if (_filmElements.length === 0) {
       break;
     }
@@ -39,6 +40,7 @@ async function getWatchlist(username) {
     link: el._attrs['data-item-link'],
     id: el._attrs['data-film-id']
   }))
+  spinner.stop();
 
   return watchlist;
 }
