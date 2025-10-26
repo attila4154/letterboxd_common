@@ -1,3 +1,9 @@
+html {
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,11 +14,13 @@ body {
   background: #1e1e2e;
   color: #cdd6f4;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Courier New', monospace;
-  min-height: 100vh;
+  height: auto;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   padding: 24px;
   line-height: 1.6;
+  overflow-y: scroll;
 }
 
 h1 {
@@ -266,5 +274,184 @@ h1 {
   }
   100% {
     content: "⠋";
+  }
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+  body {
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 16px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+  }
+
+  .lb-users-form {
+    max-width: 100%;
+    padding: 12px;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .form-group {
+    gap: 4px;
+  }
+
+  .lb-users-form label {
+    font-size: 12px;
+  }
+
+  .lb-users-form input {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .lb-users-form button {
+    font-size: 13px;
+    padding: 8px 12px;
+    margin-top: 4px;
+  }
+
+  .error-message {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  #table-data {
+    margin-top: 12px;
+  }
+
+  .result-count {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .results-table {
+    grid-template-columns: 1fr;
+    border: 1px solid #45475a;
+    overflow-x: auto;
+  }
+
+  .table-header {
+    display: none;
+  }
+
+  .table-row {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #45475a;
+    margin-bottom: 12px;
+    padding: 0;
+  }
+
+  .table-cell {
+    border-bottom: 1px solid #313244;
+    border-right: none;
+    padding: 10px;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .table-cell:last-child {
+    border-bottom: none;
+  }
+
+  .table-cell::before {
+    font-weight: normal;
+    color: #89b4fa;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  .table-cell:first-child::before {
+    content: "Film Name";
+  }
+
+  .table-cell:last-child::before {
+    content: "Link";
+  }
+
+  .table-row:hover .table-cell {
+    background: #262838;
+  }
+
+  .button-spinner {
+    width: 10px;
+    height: 10px;
+  }
+
+  .button-spinner::after {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 15px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+  }
+
+  .lb-users-form {
+    padding: 10px;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .form-row {
+    gap: 10px;
+  }
+
+  .lb-users-form label {
+    font-size: 11px;
+  }
+
+  .lb-users-form input {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+
+  .lb-users-form button {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .error-message {
+    font-size: 11px;
+    padding: 6px;
+    margin-bottom: 6px;
+  }
+
+  .result-count {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  .table-cell {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .table-cell::before {
+    font-size: 11px;
+    margin-bottom: 3px;
+  }
+
+  .table-row {
+    margin-bottom: 10px;
   }
 }
