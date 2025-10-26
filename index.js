@@ -1,19 +1,26 @@
 import readline from 'readline';
+import { Table } from 'console-table-printer';
 import HTMLParser from 'node-html-parser';
 import ora from 'ora';
 
 main();
 
 async function main() {
-  const users = await ask('Enter users: ');
+  const users = await ask('Enter users separated with comma: ');
   const [username1, username2] = users.split(',').map(u => u.trim());
 
   const wl1 = await getWatchlist(username1);
   const wl2 = await getWatchlist(username2);
 
   const common = wl1.filter(f1 => wl2.some(f2 => f2.id === f1.id));
-  console.log('common:');
-  console.table(common);
+
+  const table = new Table({
+    title: 'Common',
+    columns: [{ name: 'Name', alignment: 'right' }, { name: 'Link', alignment: 'left' }],
+    enabledColumns: ['Name', 'Link'],
+    rows: common,
+  })
+  table.printTable();
 }
 
 async function getWatchlist(username) {
@@ -36,9 +43,9 @@ async function getWatchlist(username) {
   }
 
   const watchlist = filmElements.map(el => ({
-    name: el._attrs['data-item-name'],
-    link: el._attrs['data-item-link'],
-    id: el._attrs['data-film-id']
+    Name: el._attrs['data-item-name'],
+    id: el._attrs['data-film-id'],
+    Link: 'https://letterboxd.com' + el._attrs['data-item-link'],
   }))
   spinner.stop();
 
