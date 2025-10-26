@@ -12,6 +12,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const fastify = Fastify({ logger: true });
 
 
+fastify.get('/test', (req, res) => {
+  res.send('echo');
+})
 fastify.register(fastifyStatic, {
   root: path.join(__dirname, 'public'),
 })
