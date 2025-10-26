@@ -56,6 +56,12 @@ function renderTable(json) {
   const tableSection = document.getElementById('table-data');
   [...tableSection.children].forEach(child => child.remove());
 
+  // Create result count display
+  const countDisplay = document.createElement('div');
+  countDisplay.className = 'result-count';
+  countDisplay.textContent = `${json.length} result${json.length !== 1 ? 's' : ''} found`;
+  tableSection.appendChild(countDisplay);
+
   const table = document.createElement('div');
   table.className = 'results-table';
 
