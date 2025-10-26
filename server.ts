@@ -1,12 +1,12 @@
 import Fastify from 'fastify';
 import HTMLParser, { type HTMLElement } from 'node-html-parser';
 import fastifyStatic from '@fastify/static'
-import path from 'path';
-// import * as fs from 'node:fs';
+import * as path from 'path';
 
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+// @ts-ignore
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const fastify = Fastify({ logger: true });
